@@ -64,7 +64,7 @@ public class PlayGameController {
 	}
 
 	private void playGame(Innings currentInning, Queue<List<String>> input, int target) {
-		int wickets = 0, runs = 0, totalRuns = 0, extras = 0, balls = 1;
+		int wickets = 0, runs = 0, totalRuns = 0, extras = 0, balls = 0;
 		String run = "";
 		List<BatsMan> batsmen = currentInning.getBattingTeam().getBatsmen();
 		List<Bowler> bowlers = currentInning.getBowlingTeam().getBowlers();
@@ -200,9 +200,12 @@ public class PlayGameController {
 		for (int i = 0; i < 3; i++) {
 			output += "" + batsmen.get(i).getName() + " - " + batsmen.get(i).getRuns() + " ("
 					+ batsmen.get(i).getBalls() + ") - SR "
-					+ (Math.round((double) batsmen.get(i).getRuns() / (double) batsmen.get(i).getBalls()) * 100)
-					+ " - C "
-					+ (Math.round((double) batsmen.get(i).getRuns() / (double) currentInning.getTotalRuns()) * 100);
+					+ (Math.round(
+							(double) ((double) batsmen.get(i).getRuns() / (double) batsmen.get(i).getBalls()) * 100))
+					+ "% - C "
+					+ (Math.round(
+							(double) ((double) batsmen.get(i).getRuns() / (double) currentInning.getTotalRuns()) * 100))
+					+ "%\n";
 		}
 		return output;
 	}
